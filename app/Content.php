@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
 
-    //use ModelHelper;
+    use ModelHelper;
 
     /**
      * The database table used by the model.
