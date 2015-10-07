@@ -13,7 +13,7 @@ class PagesSeeder extends Seeder
     {
         DB::table('pages')->insert([
             'name' => 'Header',
-            'slug' => '',
+            'slug' => 'header',
             'parent_id' => null,
             'order' => 1,
             'visible' => true,
@@ -25,7 +25,7 @@ class PagesSeeder extends Seeder
 
         DB::table('pages')->insert([
             'name' => 'Main',
-            'slug' => '',
+            'slug' => 'main',
             'parent_id' => null,
             'order' => 2,
             'visible' => true,
@@ -37,7 +37,7 @@ class PagesSeeder extends Seeder
 
         DB::table('pages')->insert([
             'name' => 'Footer',
-            'slug' => '',
+            'slug' => 'footer',
             'parent_id' => null,
             'order' => 3,
             'visible' => true,
