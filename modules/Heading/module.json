@@ -1,0 +1,15 @@
+{
+    "name": "Heading",
+    "alias": "heading",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Heading\\Providers\\HeadingServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

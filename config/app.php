@@ -154,6 +154,8 @@ return [
         /*
          * Module Service Providers..
          */
+        Modules\Heading\Providers\HeadingServiceProvider::class,
+
 
     ],
 
