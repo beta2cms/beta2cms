@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -15,9 +16,25 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.master');
     }
 
+
+    public function getSignin()
+    {
+        return view('admin.auth.signin');
+    }
+
+
+
+    public function postSignin(Request $request)
+    {
+
+        $user = \App\User::find();
+        $log = Auth::login();
+
+        dd($log);
+    }
     /**
      * Show the form for creating a new resource.
      *

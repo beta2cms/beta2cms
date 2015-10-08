@@ -58,6 +58,7 @@ class PageController extends Controller
             }
         }
 
+        dd($page);
         return view('layout.master', compact('title', 'page'));
     }
 

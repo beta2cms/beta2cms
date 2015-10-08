@@ -14,10 +14,40 @@
 /**
  * Route to the Admin pages
  */
-Route::get('admin', [
-    'as' => 'admin',
-    'uses' => 'AdminController@index'
-]);
+
+Route::group(['prefix' => 'admin'], function() {
+
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/', [
+            'as' => 'admin.index',
+            'uses' => 'AdminController@index'
+        ]);
+    });
+
+    Route::group(['middleware' => 'guest'], function() {
+        Route::get('/signin', [
+            'as' => 'admin.signin',
+            'uses' => 'Auth\AuthController@getLogin'
+        ]);
+
+        Route::post('/signin', [
+            'uses' => 'Auth\AuthController@postLogin'
+        ]);
+
+        Route::get('/signup', [
+            'as' => 'admin.signup',
+            'uses' => 'Auth\AuthController@getRegister'
+        ]);
+
+        Route::post('/signup', [
+            'uses' => 'Auth\AuthController@postRegister'
+        ]);
+
+    });
+
+});
+
+
 
 
 /**
