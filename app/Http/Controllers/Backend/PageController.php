@@ -1,40 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\PageRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class PageController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('admin.master');
+        $pages = \App\Page::findBySlug('main')->children;
+
+        return view('admin.page.index', compact('pages'));
     }
 
-
-    public function getSignin()
-    {
-        return view('admin.auth.signin');
-    }
-
-
-
-    public function postSignin(Request $request)
-    {
-
-        $user = \App\User::find();
-        $log = Auth::login();
-
-        dd($log);
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,7 +34,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.page.create');
     }
 
     /**
@@ -51,9 +43,21 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PageRequest $request)
     {
-        //
+        $data = $request->all();
+        if(empty($data['slug']))
+        {
+            $data['slug'] = str_slug( $data['name'] );
+        }
+
+        $exist =  \App\Page::findBySlug($data['slug'])->toArray();
+        if(!empty($exist))
+        {
+            //$appendix = '-1';
+            dd($data,'change slug');
+
+        }
     }
 
     /**

@@ -35,6 +35,6 @@ trait ModelHelper
      */
     public function scopeFindBySlug($query, $slug)
     {
-        return $query->where('slug', $slug)->firstOrFail();
+        return $query->where('slug', $slug)->first();
     }
 }

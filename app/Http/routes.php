@@ -20,8 +20,15 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [
             'as' => 'admin.index',
-            'uses' => 'AdminController@index'
+            'uses' => 'Backend\AdminController@index'
         ]);
+
+        Route::get('/logout', [
+            'as' => 'admin.logout',
+            'uses' => 'Auth\AuthController@getLogout'
+        ]);
+
+        Route::resource('page', 'Backend\PageController');
     });
 
     Route::group(['middleware' => 'guest'], function() {
@@ -44,7 +51,6 @@ Route::group(['prefix' => 'admin'], function() {
         ]);
 
     });
-
 });
 
 
