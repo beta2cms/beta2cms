@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">SB Admin</a>
+            <a class="navbar-brand" href="{{route('admin.index')}}">beta2cms</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
@@ -32,12 +32,12 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                 <ul class="dropdown-menu alert-dropdown">
 
-                    @include('admin.partials.alert' ,  [
-                    'route' => null,
-                    'name' => 'Alert Name',
-                    'level' => 'success',
-                    'massage' => 'Alert Badge'
-                    ])
+                    {{--@include('admin.partials.alert' ,  [--}}
+                    {{--'route' => null,--}}
+                    {{--'name' => 'Alert Name',--}}
+                    {{--'level' => 'success',--}}
+                    {{--'massage' => 'Alert Badge'--}}
+                    {{--])--}}
                     {{--<li>--}}
                         {{--<a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>--}}
                     {{--</li>--}}
@@ -63,28 +63,69 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{auth()->user()->name}} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                    </li>
+
+                    @include('admin.partials.side-item' ,  [
+                        'route' => '#',
+                        'icon' => 'user',
+                        'name' => 'Profile',
+                    ])
+
+                    @include('admin.partials.side-item' ,  [
+                       'route' => '#',
+                       'icon' => 'envelope',
+                       'name' => 'Inbox',
+                   ])
+
+                    @include('admin.partials.side-item' ,  [
+                       'route' => '#',
+                       'icon' => 'gear',
+                       'name' => 'Setting',
+                   ])
+
                     <li class="divider"></li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                    </li>
+
+                    @include('admin.partials.side-item' ,  [
+                       'route' => route('admin.logout'),
+                       'icon' => 'power-off',
+                       'name' => 'Log Out',
+                   ])
                 </ul>
             </li>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                @include()
+
+                {{--@include('admin.partials.side-item' ,  [--}}
+                    {{--'route' => '#',--}}
+                    {{--'icon' => 'dashboard',--}}
+                    {{--'name' => 'Dashboard',--}}
+                    {{--'items' => [--}}
+                        {{--[--}}
+                            {{--'route' => 'null',--}}
+                            {{--'name' => 'Dropdown Item'--}}
+                        {{--],--}}
+                        {{--[--}}
+                            {{--'route' => 'null',--}}
+                            {{--'name' => 'Dropdown Item'--}}
+                        {{--],--}}
+                    {{--]--}}
+                {{--])--}}
+
+
+                @include('admin.partials.side-item' ,  [
+                    'route' => '#',
+                    'icon' => 'dashboard',
+                    'name' => 'Dashboard',
+                ])
+
+                @include('admin.partials.side-item' ,  [
+                    'route' => route('admin.page.index'),
+                    'icon' => 'indent',
+                    'name' => 'Site Structure',
+                ])
             </ul>
         </div>
         <!-- /.navbar-collapse -->
