@@ -28,6 +28,12 @@ Route::group(['prefix' => 'admin'], function() {
             'uses' => 'Auth\AuthController@getLogout'
         ]);
 
+
+        Route::get('/page/{id}/active', [
+            'as' => 'admin.page.active',
+            'uses' => 'Backend\PageController@toggleActive'
+        ]);
+
         Route::resource('page', 'Backend\PageController');
     });
 
