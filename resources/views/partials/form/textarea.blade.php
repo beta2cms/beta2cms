@@ -1,4 +1,5 @@
-<div class="form-group">
-    {!!  Form::label( $name , $label ) !!}
+<div class="form-group {{$errors->has($name) ? 'has-error' : ''}}">
+    @include('partials.form.label')
     {!! Form::textarea($name,  $select or null, $param) !!}
 </div>
+@include('partials.form.error')
