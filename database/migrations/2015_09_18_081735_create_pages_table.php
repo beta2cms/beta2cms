@@ -18,7 +18,7 @@ class CreatePagesTable extends Migration
             $table->string('slug');
             $table->integer('parent_id')->nullable();
             $table->integer('order')->nullable();
-            $table->boolean('visible');
+            $table->boolean('active');
             $table->string('css_id')->nullable();
             $table->string('css_class')->nullable();
             $table->timestamps();
