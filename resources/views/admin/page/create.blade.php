@@ -11,7 +11,7 @@
         @include('admin.page.partials.form', [
             'route' => 'admin.page.store',
             'model' => null,
-            'parent' => 2,
+            'parent' => $parent,
             'btn' => 'Create new page'
         ])
     </div>
