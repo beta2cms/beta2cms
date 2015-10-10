@@ -116,7 +116,7 @@
 
 
                 @include('admin.partials.side-item' ,  [
-                    'route' => '#',
+                    'route' => route('admin.index'),
                     'icon' => 'dashboard',
                     'name' => 'Dashboard',
                 ])
@@ -126,6 +126,7 @@
                     'icon' => 'indent',
                     'name' => 'Site Structure',
                 ])
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
