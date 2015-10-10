@@ -41,6 +41,8 @@
                         @yield('title') <small>@yield('subheading')</small>
                     </h1>
                     <!-- Breadcrumbs -->
+                    <!-- Flash -->
+                    {{--@include('flash::message')--}}
                 </div>
             </div>
             <!-- /.row -->
