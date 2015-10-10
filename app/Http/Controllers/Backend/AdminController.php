@@ -17,7 +17,8 @@ class AdminController extends Controller
     public function index()
     {
 
-        return view('admin.index');
+        $nodes = \App\Node::allDeleted()->get();
+        return view('admin.index', compact('nodes'));
     }
 
 
