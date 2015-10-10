@@ -23,7 +23,7 @@
 ])
 
 @include('partials.form.hidden', [
-    'name' => 'parent',
+    'name' => 'parent_id',
     'value' => $parent
 ])
 
