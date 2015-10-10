@@ -22,6 +22,7 @@ class CreateNodesTable extends Migration
             $table->string('css_id')->nullable();
             $table->string('css_class')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('parent_id')
                 ->references('id')

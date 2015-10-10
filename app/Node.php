@@ -30,6 +30,7 @@ class Node extends Model
         'active',
         'css_id',
         'css_class',
+        'deleted_at'
     ];
 
     /**

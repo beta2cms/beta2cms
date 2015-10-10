@@ -37,4 +37,28 @@ trait ModelHelper
     {
         return $query->where('slug', $slug)->first();
     }
+
+    /**
+     * Get all not Deleted entries
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeNotDeleted($query)
+    {
+        return $query->where('deleted_at', null);
+    }
+
+
+    /**
+     * get all deleted entries
+     *
+     * @param $query
+     * @return mixed
+     */
+
+    public function scopeAllDeleted($query)
+    {
+        return $query->whereNotNull('deleted_at');
+    }
 }
