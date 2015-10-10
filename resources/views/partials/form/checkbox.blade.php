@@ -1,7 +1,7 @@
 <div class="form-group">
     <div class="input-group">
     <span class="input-group-addon">
-       {!! Form::checkbox($label, $select, false) !!}
+       {!! Form::checkbox($name, true, false) !!}
     </span>
         <label class="form-control" for="{{$name}}">{{$label}}</label>
     </div>
