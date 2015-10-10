@@ -29,12 +29,12 @@ Route::group(['prefix' => 'admin'], function() {
         ]);
 
 
-        Route::get('/page/{id}/active', [
-            'as' => 'admin.page.active',
-            'uses' => 'Backend\PageController@toggleActive'
+        Route::get('/node/{id}/active', [
+            'as' => 'admin.node.active',
+            'uses' => 'Backend\NodeController@toggleActive'
         ]);
 
-        Route::resource('page', 'Backend\PageController');
+        Route::resource('node', 'Backend\NodeController');
     });
 
     Route::group(['middleware' => 'guest'], function() {
@@ -67,12 +67,12 @@ Route::group(['prefix' => 'admin'], function() {
  */
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PageController@index'
+    'uses' => 'NodeController@index'
 ]);
 
 /**
  * Dynamic URL Routing
  */
 Route::get('app/{query}',
-    'PageController@display'
+    'NodeController@display'
 )->where('query','.+');

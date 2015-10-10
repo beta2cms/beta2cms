@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\PageRequest;
+use App\Http\Requests\NodeRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PageController extends Controller
+class NodeController extends Controller
 {
 
     public function __construct()
@@ -22,9 +22,9 @@ class PageController extends Controller
 
     public function index()
     {
-        $main = \App\Page::findBySlug('main');
+        $main = \App\Node::findBySlug('main');
 
-        return view('admin.page.index', compact('main'));
+        return view('admin.node.index', compact('main'));
     }
 
     /**
@@ -35,7 +35,7 @@ class PageController extends Controller
     public function create(Request $request)
     {
         $parent = $request->get('parent');
-        return view('admin.page.create', compact('parent'));
+        return view('admin.node.create', compact('parent'));
     }
 
     /**
@@ -44,7 +44,7 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PageRequest $request)
+    public function store(NodeRequest $request)
     {
         $data = $request->all();
 
@@ -59,21 +59,21 @@ class PageController extends Controller
         }
 
         // todo: create slug helper
-        $exist =  \App\Page::findBySlug($data['slug'])->get()->toArray();
+        $exist =  \App\Node::findBySlug($data['slug'])->get()->toArray();
         if(!empty($exist))
         {
             //$appendix = '-1';
             dd($data,'change slug');
         }
 
-        \App\Page::create($data)->save();
+        \App\Node::create($data)->save();
         // todo: include flash
-//        flash()->success('New page created!');
+//        flash()->success('New node created!');
 
         // todo: insert after logic
 
 
-        return redirect()->route('admin.page.index');
+        return redirect()->route('admin.node.index');
     }
 
     /**
@@ -95,19 +95,24 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $node = \App\Node::find($id);
+        return view('admin.node.edit', compact('node'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param NodeRequest|Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NodeRequest $request, $id)
     {
-        //
+        \App\Node::find($id)->update($request->all());
+
+        // todo: flash message
+
+        return redirect()->route('admin.node.index');
     }
 
     /**
@@ -130,9 +135,9 @@ class PageController extends Controller
      */
     public function toggleActive($id)
     {
-        $page = \App\Page::find($id);
-        $page->active = !boolval($page->active);
-        $page->save();
+        $node = \App\Node::find($id);
+        $node->active = !boolval($node->active);
+        $node->save();
 
         return redirect()->back();
     }

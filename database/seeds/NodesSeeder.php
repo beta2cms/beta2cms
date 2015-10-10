@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PagesSeeder extends Seeder
+class NodesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class PagesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pages')->insert([
+        DB::table('nodes')->insert([
             'name' => 'Header',
             'slug' => 'header',
             'parent_id' => null,
@@ -23,7 +23,7 @@ class PagesSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
 
-        DB::table('pages')->insert([
+        DB::table('nodes')->insert([
             'name' => 'Main',
             'slug' => 'main',
             'parent_id' => null,
@@ -35,7 +35,7 @@ class PagesSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
 
-        DB::table('pages')->insert([
+        DB::table('nodes')->insert([
             'name' => 'Footer',
             'slug' => 'footer',
             'parent_id' => null,
@@ -49,7 +49,7 @@ class PagesSeeder extends Seeder
 
         // ------------
 
-        DB::table('pages')->insert([
+        DB::table('nodes')->insert([
             'name' => 'Home',
             'slug' => 'home',
             'parent_id' => 2,
@@ -61,7 +61,7 @@ class PagesSeeder extends Seeder
             'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
 
-        DB::table('pages')->insert([
+        DB::table('nodes')->insert([
             'name' => 'About',
             'slug' => 'about',
             'parent_id' => 2,

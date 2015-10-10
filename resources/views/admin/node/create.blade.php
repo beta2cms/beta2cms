@@ -8,11 +8,11 @@
 @section('content')
 
     <div class="col-lg-12">
-        @include('admin.page.partials.form', [
-            'route' => 'admin.page.store',
+        @include('admin.node.partials.form', [
+            'route' => 'admin.node.store',
             'model' => null,
             'parent' => $parent,
-            'btn' => 'Create new page'
+            'btn' => 'Create new node'
         ])
     </div>
 @endsection

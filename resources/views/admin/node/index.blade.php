@@ -17,8 +17,9 @@
             </tr>
             </thead>
             <tbody>
-              @include('admin.page.partials.table')
+              @include('admin.node.partials.table')
             </tbody>
         </table>
+
     </div>
 @endsection

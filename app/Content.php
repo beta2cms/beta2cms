@@ -23,7 +23,7 @@ class Content extends Model
      * @var array
      */
     protected $fillable = [
-        'page_id',
+        'node_id',
         'element_id',
         'order',
         'active'
@@ -42,7 +42,7 @@ class Content extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function page()
+    public function node()
     {
         return $this->belongsTo(\App\Content::class);
     }

@@ -5,7 +5,7 @@ namespace App;
 use App\Helpers\ModelHelper;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Node extends Model
 {
 
     use ModelHelper;
@@ -15,7 +15,7 @@ class Page extends Model
      *
      * @var string
      */
-    protected $table = 'pages';
+    protected $table = 'nodes';
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +46,7 @@ class Page extends Model
      */
     public function children()
     {
-        return $this->hasMany(\App\Page::class,'parent_id', 'id');
+        return $this->hasMany(\App\Node::class,'parent_id', 'id');
     }
 
     /**
@@ -56,12 +56,12 @@ class Page extends Model
      */
     public function parent()
     {
-        return $this->belongsTo(\App\Page::class, 'parent_id');
+        return $this->belongsTo(\App\Node::class, 'parent_id');
     }
 
 
     /**
-     * Get all Content that is associated with this page
+     * Get all Content that is associated with this node
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

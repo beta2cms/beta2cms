@@ -122,7 +122,7 @@
                 ])
 
                 @include('admin.partials.side-item' ,  [
-                    'route' => route('admin.page.index'),
+                    'route' => route('admin.node.index'),
                     'icon' => 'indent',
                     'name' => 'Site Structure',
                 ])

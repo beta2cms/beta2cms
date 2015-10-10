@@ -14,7 +14,7 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('page_id'); // Zeiger auf die Aktuelle Seite
+            $table->integer('node_id'); // Zeiger auf die Aktuelle Seite
             $table->integer('element_id');
             //$table->integer('module_id'); // Zeiger auf das Moudle, das benutzt wird
             //$table->integer('module_content_id'); // id of module content // Inhalt des Modules
@@ -23,9 +23,9 @@ class CreateContentsTable extends Migration
         
             $table->timestamps();
 
-            $table->foreign('page_id')
+            $table->foreign('node_id')
                 ->references('id')
-                ->on('structure');
+                ->on('nodes');
 
 
             $table->foreign('element_id')

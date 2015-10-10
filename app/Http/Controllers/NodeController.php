@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
 
-class PageController extends Controller
+class NodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,11 +32,11 @@ class PageController extends Controller
         $page= "";
         $arr = explode('/', $query);
         // \App\Page::find(4)->content->find(5)->element->module->name
-        $heading = \App\Page::findBySlug('header');
+        $heading = \App\Node::findBySlug('header');
 
 
         // test
-        $main =  \App\Page::findBySlug($arr[0])->get();
+        $main =  \App\Node::findBySlug($arr[0])->get();
 
 
         foreach ($main as $item)

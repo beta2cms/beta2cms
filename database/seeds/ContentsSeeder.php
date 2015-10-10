@@ -13,7 +13,7 @@ class ContentsSeeder extends Seeder
     {
 
         DB::table('contents')->insert([
-            'page_id' => 4,
+            'node_id' => 4,
             'element_id' => 1,
             'order' => 1,
             'active' => true,
@@ -22,7 +22,7 @@ class ContentsSeeder extends Seeder
         ]);
 
         DB::table('contents')->insert([
-            'page_id' => 4,
+            'node_id' => 4,
             'element_id' => 2,
             'order' => 2,
             'active' => true,
@@ -31,7 +31,7 @@ class ContentsSeeder extends Seeder
         ]);
 
         DB::table('contents')->insert([
-            'page_id' => 4,
+            'node_id' => 4,
             'element_id' => 3,
             'order' => 3,
             'active' => true,
@@ -40,7 +40,7 @@ class ContentsSeeder extends Seeder
         ]);
 
         DB::table('contents')->insert([
-            'page_id' => 4,
+            'node_id' => 4,
             'element_id' => 4,
             'order' => 4,
             'active' => true,
