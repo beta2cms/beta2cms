@@ -91,3 +91,5 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+# keep this files
+!vendor/davejamesmiller/laravel-breadcrumbs/views/bootstrap3.blade.php

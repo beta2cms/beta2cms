@@ -150,6 +150,7 @@ return [
          */
         Pingpong\Modules\ModulesServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
         /*
          * Module Service Providers..
@@ -209,6 +210,7 @@ return [
         'Module'    => Pingpong\Modules\Facades\Module::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

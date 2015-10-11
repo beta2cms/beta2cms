@@ -3,6 +3,10 @@
 
 @section('title', 'Dashboard')
 
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('dashboard') !!}
+@endsection
+
 
 @section('content')
 

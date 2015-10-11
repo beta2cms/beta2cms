@@ -41,18 +41,19 @@
                         @yield('title') <small>@yield('subheading')</small>
                     </h1>
                     <!-- Breadcrumbs -->
-                    @include('admin.partials.breadcrumbs', ['items' => [
-                        [
-                            'icon' => 'dashboard',
-                            'route' => 'admin.index',
-                            'name' => 'Dashboard'
-                        ],
-                        [
-                            'icon' => 'indent',
-                            'route' => 'admin.index.node',
-                            'name' => 'Site Structure'
-                        ],
-                    ]])
+                    @yield('breadcrumbs')
+                    {{--@include('admin.partials.breadcrumbs', ['items' => [--}}
+                        {{--[--}}
+                            {{--'icon' => 'dashboard',--}}
+                            {{--'route' => 'admin.index',--}}
+                            {{--'name' => 'Dashboard'--}}
+                        {{--],--}}
+                        {{--[--}}
+                            {{--'icon' => 'indent',--}}
+                            {{--'route' => 'admin.index.node',--}}
+                            {{--'name' => 'Site Structure'--}}
+                        {{--],--}}
+                    {{--]])--}}
                     <!-- Flash -->
                     {{--@include('flash::message')--}}
                 </div>

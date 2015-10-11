@@ -1,7 +1,10 @@
 @extends('admin.master')
 
-
 @section('title', 'Site Structure')
+
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('node') !!}
+@endsection
 
 
 @section('content')
