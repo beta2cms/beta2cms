@@ -1,12 +1,12 @@
 <ol class="breadcrumb">
     @foreach($items as $key=>$item)
         <li {{ $item == end($items) ? 'class="active"': '' }}>
-            @if($key == 0)
-                <i class="fa fa-{{$icon}}"></i>&nbsp;
-            @endif
+            {{--@if($key == 0)--}}
+                <i class="fa fa-{{$item['icon']}}"></i>&nbsp;
+            {{--@endif--}}
 
             @if($item != end($items))
-                    <a href="{{ $item['route'] }}">
+                    <a href="{{ route($item['route']) }}">
             @endif
 
                 {{ $item['name'] }}

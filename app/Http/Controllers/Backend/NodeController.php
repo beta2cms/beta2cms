@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
 class NodeController extends Controller
 {
 
@@ -22,6 +23,7 @@ class NodeController extends Controller
 
     public function index()
     {
+
         $main = \App\Node::findBySlug('main');
 
         return view('admin.node.index', compact('main'));
