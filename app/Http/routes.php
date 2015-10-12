@@ -18,17 +18,25 @@
 Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['middleware' => 'auth'], function() {
+        /*
+         * Dashboard Routes
+         */
         Route::get('/', [
             'as' => 'admin.index',
             'uses' => 'Backend\AdminController@index'
         ]);
 
+        /*
+         * User Routes
+         */
         Route::get('/logout', [
             'as' => 'admin.logout',
             'uses' => 'Auth\AuthController@getLogout'
         ]);
 
-
+        /*
+         * Node Routes
+         */
         Route::get('/node/{id}/toggle', [
             'as' => 'admin.node.toggle',
             'uses' => 'Backend\NodeController@toggle'
@@ -41,6 +49,9 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::resource('node', 'Backend\NodeController');
 
+        /*
+         * Module Routes
+         */
         Route::get('/module/{id}/toggle', [
             'as' => 'admin.module.toggle',
             'uses' => 'Backend\ModuleController@toggle'
@@ -48,9 +59,22 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::resource('module', 'Backend\ModuleController');
 
+        /*
+         * Element Routes
+         */
         Route::get('/element/{id}',[
             'as' => 'admin.element.index',
             'uses'  => 'Backend\ElementController@index'
+        ]);
+
+        Route::get('/element/{id}/create',[
+            'as' => 'admin.element.create',
+            'uses'  => 'Backend\ElementController@create'
+        ]);
+
+        Route::post('/element/{id}/store',[
+            'as' => 'admin.element.store',
+            'uses'  => 'Backend\ElementController@store'
         ]);
     });
 
