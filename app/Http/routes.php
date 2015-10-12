@@ -29,12 +29,29 @@ Route::group(['prefix' => 'admin'], function() {
         ]);
 
 
-        Route::get('/node/{id}/active', [
-            'as' => 'admin.node.active',
-            'uses' => 'Backend\NodeController@toggleActive'
+        Route::get('/node/{id}/toggle', [
+            'as' => 'admin.node.toggle',
+            'uses' => 'Backend\NodeController@toggle'
+        ]);
+
+        Route::get('/node/{id}/undo', [
+            'as' => 'admin.node.undo',
+            'uses' => 'Backend\NodeController@undoDelete'
         ]);
 
         Route::resource('node', 'Backend\NodeController');
+
+        Route::get('/module/{id}/toggle', [
+            'as' => 'admin.module.toggle',
+            'uses' => 'Backend\ModuleController@toggle'
+        ]);
+
+        Route::resource('module', 'Backend\ModuleController');
+
+        Route::get('/element/{id}',[
+            'as' => 'admin.element.index',
+            'uses'  => 'Backend\ElementController@index'
+        ]);
     });
 
     Route::group(['middleware' => 'guest'], function() {
