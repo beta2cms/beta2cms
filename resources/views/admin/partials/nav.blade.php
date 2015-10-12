@@ -127,6 +127,18 @@
                     'name' => 'Site Structure',
                 ])
 
+                @include('admin.partials.side-item' ,  [
+                    'route' => route('admin.module.index'),
+                    'icon' => 'cubes',
+                    'name' => 'Modules',
+                ])
+
+                @include('admin.partials.side-item' ,  [
+                   'route' => route('admin.element.index'),
+                   'icon' => 'puzzle-piece',
+                   'name' => 'Site Elements',
+               ])
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

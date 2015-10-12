@@ -5,7 +5,8 @@
         <td>@include('admin.node.partials.admin')</td>
     </tr>
 
-    @if(!empty($node->children()->notDeleted()->get()->toArray()))
-        @include('admin.node.partials.table', ['main' => $node , 'parent' => $key])
-    @endif
+    {{--TODO:--}}
+    {{--@if(!empty($node->children()->notDeleted()->get()->toArray()))--}}
+        {{--@include('admin.node.partials.table', ['main' => $node , 'parent' => $key])--}}
+    {{--@endif--}}
 @endforeach
