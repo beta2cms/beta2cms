@@ -29,13 +29,13 @@
                     <td colspan="2" >{{ $node->name }}</td>
                     <td>{{$node->deleted_at}}</td>
                     <td>
-                        <a href=""><i class="fa fa-refresh"></i></a>&nbsp;
-                        <a href=""><i class="fa fa-trash"></i></a>
+                        <a href="{{route('admin.node.undo', $node->id)}}" class="btn btn-xs btn-info"><i class="fa fa-refresh"></i></a>&nbsp;
+                        {{--<a href=""><i class="fa fa-trash"></i></a>--}}
                     </td>
                 </tr>
             @endforeach
         </table>
-
     </div>
+
 
 @endsection
