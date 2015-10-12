@@ -125,7 +125,14 @@ class NodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $node = \App\Node::find($id);
+        $node->deleted_at = \Carbon\Carbon::now()->toDateTimeString();
+        $node->save();
+
+        // todo: flash message
+
+        //return redirect()->route('admin.node.index');
+        return redirect()->back();
     }
 
     /**
@@ -135,10 +142,27 @@ class NodeController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function toggleActive($id)
+    public function toggle($id)
     {
         $node = \App\Node::find($id);
         $node->active = !boolval($node->active);
+        $node->save();
+
+        return redirect()->back();
+    }
+
+
+    /**
+     * Undo the deleted Element
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function undoDelete($id)
+    {
+        $node = \App\Node::find($id);
+        $node->deleted_at = null;
+        $node->active = false;
         $node->save();
 
         return redirect()->back();
