@@ -14,3 +14,22 @@ Breadcrumbs::register('node', function($breadcrumbs)
     $breadcrumbs->parent('dashboard');
     $breadcrumbs->push('Site Structure', route('admin.node.index'), ['icon' => 'indent']);
 });
+
+
+// Dashboard > Module
+Breadcrumbs::register('module', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Modules', route('admin.module.index'), ['icon' => 'cubes']);
+});
+
+
+// Dashboard > Element
+Breadcrumbs::register('element', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard');
+    $breadcrumbs->push('Element', route('admin.element.index'), ['icon' => 'puzzle-piece']);
+});
+
+
+
