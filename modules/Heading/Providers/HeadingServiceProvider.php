@@ -108,4 +108,15 @@ class HeadingServiceProvider extends ServiceProvider {
 		]);
 	}
 
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function preview($id)
+	{
+		return view()->make('heading::preview', [
+			'item' => Heading::findOrFail($id)
+		]);
+	}
+
 }
