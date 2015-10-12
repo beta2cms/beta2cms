@@ -32,4 +32,13 @@ Breadcrumbs::register('element', function($breadcrumbs)
 });
 
 
+// Dashboard > Element > Create
+Breadcrumbs::register('element-create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('element');
+    $breadcrumbs->push('Create Element', route('admin.element.create'), ['icon' => 'plus-circle']);
+});
+
+
+
 
