@@ -157,6 +157,7 @@ return [
          * Module Service Providers..
          */
         Modules\Heading\Providers\HeadingServiceProvider::class,
+        Modules\Assets\Providers\AssetsServiceProvider::class,
 
 
     ],
