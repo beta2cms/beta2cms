@@ -133,11 +133,6 @@
                     'name' => 'Modules',
                 ])
 
-                @include('admin.partials.side-item' ,  [
-                   'route' => route('admin.element.index'),
-                   'icon' => 'puzzle-piece',
-                   'name' => 'Site Elements',
-               ])
 
             </ul>
         </div>
