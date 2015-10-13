@@ -34,12 +34,23 @@
         'select' =>  false
     ])
 
-    @include('partials.form.submit', [
-        'label' => 'Sign in',
-        'params' => [
-            'class' => 'btn btn-default'
-        ]
-    ])
+    <div class="row">
+        <div class="col-sm-3">
+            @include('partials.form.submit', [
+                'label' => 'Sign in',
+                'params' => [
+                    'class' => 'btn btn-default'
+                ]
+            ])
+        </div>
+        <div class="col-sm-4">
+            <a href="{{route('admin.signup')}}" class="btn btn-warning">Forgot Password</a>
+        </div>
+        <div class="col-sm-4">
+            <a href="{{route('admin.signup')}}" class="btn btn-info">Sign Up!</a>
+        </div>
+    </div>
+
 
     @include('partials.form.close')
 
