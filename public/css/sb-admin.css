@@ -229,3 +229,42 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+/*
+   add Styles for admin list
+*/
+
+.list {
+    list-style-type: none;
+    padding-left: 6px;
+    margin-left: 0;
+}
+
+.list-item {
+    line-height: 40px;
+    border-bottom: 1px solid lightgray;
+    padding-left: 10px;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+
+.list-head {
+    border-bottom: 2px solid lightgray;
+}
+
+.list-item  > .head {
+    font-weight: bold;
+    padding-right: 40px;
+}
+
+.list-item  > .admin {
+    float: right;
+}
+
+.list-item > .title {
+    padding-right: 30px;
+}
+
