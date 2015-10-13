@@ -1,7 +1,9 @@
 <?php namespace Modules\Heading\Providers;
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 use Modules\Heading\Entities\Heading;
+use Modules\Heading\Http\Requests\HeadingRequest;
 
 class HeadingServiceProvider extends ServiceProvider {
 
@@ -109,6 +111,8 @@ class HeadingServiceProvider extends ServiceProvider {
 	}
 
 	/**
+	 * Render the preview partial of Heading
+	 *
 	 * @param $id
 	 * @return mixed
 	 */
@@ -117,6 +121,22 @@ class HeadingServiceProvider extends ServiceProvider {
 		return view()->make('heading::preview', [
 			'item' => Heading::findOrFail($id)
 		]);
+	}
+
+	/**
+	 * Render the create partial of Heading
+	 *
+	 * @return mixed
+	 */
+	public function create()
+	{
+		return view()->make('heading::create')->render();
+	}
+
+
+	public function store(HeadingRequest $request)
+	{
+		return Heading::create($request)->save();
 	}
 
 }
