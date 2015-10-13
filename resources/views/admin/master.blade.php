@@ -79,6 +79,8 @@
 <script src="{{URL::asset('vendor/jQuery/jquery-2.1.4.min.js')}}"></script>
 <script src="{{URL::asset('vendor/bootstrap-3.3.5/js/bootstrap.min.js')}}"></script>
 
+@yield('script')
+
 </body>
 
 </html>
