@@ -57,7 +57,12 @@ Route::group(['prefix' => 'admin'], function() {
             'uses' => 'Backend\ModuleController@toggle'
         ]);
 
-        Route::resource('module', 'Backend\ModuleController');
+        Route::get('/module/partial/{module}/create', [
+            'as' => 'admin.module.create',
+            'uses' => 'Backend\ModuleController@create'
+        ]);
+
+        Route::resource('module', 'Backend\ModuleController', ['except' => 'create']);
 
         /*
          * Element Routes
@@ -76,6 +81,8 @@ Route::group(['prefix' => 'admin'], function() {
             'as' => 'admin.element.store',
             'uses'  => 'Backend\ElementController@store'
         ]);
+
+
     });
 
     Route::group(['middleware' => 'guest'], function() {
