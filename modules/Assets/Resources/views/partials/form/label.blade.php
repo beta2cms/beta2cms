@@ -1,0 +1,1 @@
+{!! Form::label($name, $label, [ 'class' => 'control-label'] ) !!}
