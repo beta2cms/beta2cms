@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Module;
+use Illuminate\Support\Facades\App;
 
 class ModuleController extends Controller
 {
@@ -26,10 +27,15 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+      //  $partial = App::make('module:render')->preview(1,1);
+        $module = \App\Module::findOrFail($id);
+        $partial = App::make('module:' . strtolower($module->name))->create(1);
+        return response()->json(['partial'=> $partial,'name' => $module->name]);
+
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -101,4 +107,6 @@ class ModuleController extends Controller
 
         return redirect()->back();
     }
+
+
 }

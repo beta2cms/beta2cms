@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers\SelectboxHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 
 class ElementController extends Controller
 {
+
+    use SelectboxHelper;
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,8 @@ class ElementController extends Controller
     {
         $node = \App\Node::findOrFail($id);
 
-        return view('admin.element.index',compact('node'));
+        $render = \App::make('module:render');
+        return view('admin.element.index',compact('render','node'));
     }
 
     /**
@@ -25,10 +30,15 @@ class ElementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $items = \App\Module::active()->get();
+        $modules = SelectboxHelper::itemsToSelect($items);
+        $render = \App::make('module:render');
+        return view('admin.element.create', compact('render', 'modules', 'id'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,9 +46,13 @@ class ElementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+       // dd($request->all(), $id);
+
+        $render = \App::make('module:render');
+        $store = $render->store($request);
+        dd($store);
     }
 
     /**
@@ -85,4 +99,8 @@ class ElementController extends Controller
     {
         //
     }
+
+
+
+
 }
