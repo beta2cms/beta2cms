@@ -139,4 +139,17 @@ class HeadingServiceProvider extends ServiceProvider {
 		return Heading::create($request)->save();
 	}
 
+	/**
+	 * Return Module Validation
+	 *
+	 * @return HeadingRequest
+	 */
+	public function rules()
+	{
+		return [
+			'tag' => 'required',
+			'title' => 'required|min:3'
+		];
+	}
+
 }
