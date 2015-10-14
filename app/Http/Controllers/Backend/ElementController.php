@@ -6,7 +6,7 @@ use App\Helpers\SelectboxHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 
 class ElementController extends Controller
 {
@@ -46,12 +46,24 @@ class ElementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $node_id)
     {
-       // dd($request->all(), $id);
-
         $render = \App::make('module:render');
-        $store = $render->store($request);
+        $data = $request->all();
+        $rules = $render->rules($data['module']);
+
+
+        $validator = Validator::make($data, $rules);
+
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $store = $render->store($request, $node_id);
         dd($store);
     }
 

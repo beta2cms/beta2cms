@@ -1,5 +1,4 @@
 
-
 @extends('admin.master')
 
 @section('title', 'Create Element')
@@ -12,6 +11,16 @@
 
 @section('content')
 
+    <div class="col-lg-12">
+        @if($errors->any())
+
+            <ul>
+            @foreach($errors as $error)
+                <li>{{$error->first()}}</li>
+            @endforeach
+            </ul>
+        @endif
+    </div>
 
     <div class="col-lg-12">
         @include('admin.element.partials.form', [
@@ -25,32 +34,52 @@
 @endsection
 
 @section('script')
+    {{--TODO: Refactor,--}}
     <script>
         $(function() {
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-Token' : '{{ csrf_token() }}'
                 }
             });
 
-            $.ajax({
-                url: "{{route('admin.module.create', 1) }}",
-                type: "get",
-                cache: false,
-                {{--data: { '_token': "{{ csrf_token() }}" },--}}
-                success:function(data){
-                    $('.page-header small').html(data.name);
+            @if($errors->any())
+            loadModule();
+            displayErrors( {!!   $errors->toJSON() !!} );
+            @endif
 
-                    $('#partial').html(data.partial);
-
-                    console.log(data.partial);
-
-                },error:function(e){
-                   console.log(e);
-                }
-            }, 'html'); //end of ajax
-
+            $("#module").on('change', function() {
+                loadModule();
             });
+
+            function loadModule()
+            {
+                var value = $("#module").val();
+
+                $.ajax({
+                    url: "{{ url('/admin/module/partial') }}/" + value + "/create" ,
+                    type: "get",
+                    cache: false,
+                    success: function(data){
+
+                        $('.page-header small').html(data.name);
+
+                        $('#partial').html(data.partial);
+
+                    },error: function(e){
+                        console.log(e);
+                    }
+                }, 'html');
+            }
+
+            function displayErrors(errors)
+            {
+                console.log(errors);
+            }
+        });
+
+
 
     </script>
 

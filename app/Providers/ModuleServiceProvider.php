@@ -51,7 +51,6 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function preview($module_id, $element_id)
     {
-
         $this->isModule($module_id);
 
         return App::make('module:' . strtolower($this->module->name))->preview($element_id);
@@ -65,15 +64,17 @@ class ModuleServiceProvider extends ServiceProvider
         return App::make('module:' . strtolower($this->module->name))->create();
     }
 
-    public function store($request)
+    public function store($request, $node_id)
     {
         $data = $request->all();
 
         $this->isModule($data['module']);
 
-        dd($data);
+//        $elem = \App\Element::
+//        dd($data, $node_id);
         $store =  $this->element->create($request->all());
-        dd($store);
+        return redirect()->back();
+
     }
 
     public function edit($module_id)
@@ -91,6 +92,14 @@ class ModuleServiceProvider extends ServiceProvider
 
     }
 
+
+    public function rules($module_id)
+    {
+        $this->isModule($module_id);
+
+        return $this->element->rules();
+    }
+
     /**
      * Check if the used Module is the current one
      *
@@ -103,7 +112,5 @@ class ModuleServiceProvider extends ServiceProvider
             $this->module = Module::findOrFail($module_id);
             $this->element = App::make('module:' . strtolower($this->module->name));
         }
-
-
     }
 }
