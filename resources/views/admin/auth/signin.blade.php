@@ -43,12 +43,12 @@
                 ]
             ])
         </div>
-        <div class="col-sm-4">
-            <a href="{{route('admin.signup')}}" class="btn btn-warning">Forgot Password</a>
-        </div>
-        <div class="col-sm-4">
-            <a href="{{route('admin.signup')}}" class="btn btn-info">Sign Up!</a>
-        </div>
+        {{--<div class="col-sm-4">--}}
+            {{--<a href="{{route('admin.signup')}}" class="btn btn-warning">Forgot Password</a>--}}
+        {{--</div>--}}
+        {{--<div class="col-sm-4">--}}
+            {{--<a href="{{route('admin.signup')}}" class="btn btn-info">Sign Up!</a>--}}
+        {{--</div>--}}
     </div>
 
 
