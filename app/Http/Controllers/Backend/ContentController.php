@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers\Data;
 use App\Helpers\SelectboxHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -12,6 +13,7 @@ class ContentController extends Controller
 {
 
     use SelectboxHelper;
+    use Data;
 
     /**
      * The Module Service Provider
@@ -67,11 +69,11 @@ class ContentController extends Controller
     public function store(Request $request, $node_id)
     {
         $data = $request->all();
-
         $rules = $this->provider->rules($data['module']);
 
         $validator = Validator::make($data, $rules);
 
+        //TODO
         if ($validator->fails()) {
             return redirect()
                 ->back()
@@ -79,8 +81,27 @@ class ContentController extends Controller
                 ->withInput();
         }
 
-        $store = $this->provider->store($data, $node_id);
-        dd($store);
+        $data = Data::checkActive($data);
+        $data = Data::renameField($data, 'module', 'module_id');
+//        dd($data);
+
+        // Create Module
+        $module = $this->provider->store($data);
+
+        $data = Data::addField($data, 'row', $module['id']);
+
+        //Create Element
+        $elem_status = \App\Element::create($data)->save();
+
+        $element_id = \App\Element::all()->last()->id;
+
+        $data = Data::addField($data, 'node_id', $node_id);
+        $data = Data::addField($data, 'element_id', $element_id);
+
+        $content = \App\Content::create($data)->save();
+
+        //todo: flash message
+        return redirect()->route('admin.element.index', ['node' => $node_id ]);
     }
 
     /**
