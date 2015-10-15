@@ -136,9 +136,20 @@ class HeadingServiceProvider extends ServiceProvider implements iModuleProvider 
 	}
 
 
+	/**
+	 * @param $data
+	 * @return null
+     */
 	public function store($data)
 	{
-		return Heading::create($data)->save();
+		$success = Heading::create($data)->save();
+		$item = Heading::all()->last()->id;
+		//todo log
+
+		return [
+			'success' => $success,
+			'id' => $item
+		];
 	}
 
 	/**
