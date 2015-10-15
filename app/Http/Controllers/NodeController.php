@@ -35,13 +35,13 @@ class NodeController extends Controller
         $heading = \App\Node::findBySlug('header');
 
 
+//        dd(\App\Node::findBySlug($arr[0])->content);
         // test
-        $main =  \App\Node::findBySlug($arr[0])->get();
+        $content =  \App\Node::active()->findBySlug($arr[0])->content;
 
 
-        foreach ($main as $item)
+        foreach ($content as $item)
         {
-
 
             // get the module Name of
 //            $module = \App\Module::findOrFail($p->module_id);
@@ -49,16 +49,16 @@ class NodeController extends Controller
             // resolve the Module Name out of the IOC Container and render the content partiall
 //            $content .= App::make('module:' . $module->name)->render($p->content_id);
 
-            foreach ($item->content as $content)
-            {
-                $module = $content->element->module->name;
+//            foreach ($item->content as $content)
+//            {
+                //Todo check if Module is Active and Content is Active
+                $module = $item->element->module->name;
                 if($module!= 'Heading') continue;
                 // resolve the Module out of the IOC Container and render the partial
-                $page .= App::make('module:' . strtolower($module))->render($content->element->row);
-            }
+                $page .= App::make('module:' . strtolower($module))->render($item->element->row);
+//            }
         }
 
-        dd($page);
         return view('layout.master', compact('title', 'page'));
     }
 
