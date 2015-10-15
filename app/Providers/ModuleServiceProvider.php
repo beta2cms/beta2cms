@@ -62,6 +62,12 @@ class ModuleServiceProvider extends ServiceProvider
     }
 
 
+    /**
+     *
+     *
+     * @param $module_id
+     * @return mixed
+     */
     public function create($module_id)
     {
         $this->isModule($module_id);
@@ -69,18 +75,28 @@ class ModuleServiceProvider extends ServiceProvider
         return $this->moduleServiceProvider->create();
     }
 
-    public function store($data, $node_id)
+    /**
+     * Store the created item
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function store($data)
     {
-        $this->isModule($data['module']);
+        $this->isModule($data['module_id']);
 
-//        $elem = \App\moduleServiceProvider::
-//        dd($data, $node_id);
-        $store =  $this->moduleServiceProvider->create($data);
-        return redirect()->back();
+        $store =  $this->moduleServiceProvider->store($data);
+        return $store;
 
     }
 
 
+    /**
+     * Validation Rules
+     *
+     * @param $module_id
+     * @return mixed
+     */
     public function rules($module_id)
     {
         $this->isModule($module_id);
