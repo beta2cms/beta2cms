@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 
-class ModuleServiceProvider extends ServiceProvider implements \iModuleProvider
+class ModuleServiceProvider extends ServiceProvider
 {
 
 
@@ -80,17 +80,6 @@ class ModuleServiceProvider extends ServiceProvider implements \iModuleProvider
 
     }
 
-    public function edit($module_id)
-    {
-
-    }
-
-
-    public function destroy($module_id)
-    {
-
-    }
-
 
     public function rules($module_id)
     {
@@ -114,27 +103,5 @@ class ModuleServiceProvider extends ServiceProvider implements \iModuleProvider
         }
     }
 
-    /**
-     * Render the Module Partial
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function render($id)
-    {
-        // TODO: Implement render() method.
-    }
 
-    /**
-     * Update entry by given id
-     *
-     * @param $data
-     * @param $id
-     * @return mixed
-     * @internal param $request
-     */
-    public function update($data, $id)
-    {
-        // TODO: Implement update() method.
-    }
 }

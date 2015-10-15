@@ -1,12 +1,13 @@
 <?php namespace Modules\Heading\Providers;
 
+use App\Contracts\ModuleProviders\iModuleProvider;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 use Modules\Heading\Entities\Heading;
 use Modules\Heading\Http\Requests\HeadingRequest;
 use Pingpong\Modules\Facades\Module;
 
-class HeadingServiceProvider extends ServiceProvider  {
+class HeadingServiceProvider extends ServiceProvider implements iModuleProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -135,9 +136,9 @@ class HeadingServiceProvider extends ServiceProvider  {
 	}
 
 
-	public function store(Request $request)
+	public function store($data)
 	{
-		return Heading::create($request)->save();
+		return Heading::create($data)->save();
 	}
 
 	/**
@@ -152,4 +153,39 @@ class HeadingServiceProvider extends ServiceProvider  {
 
 	}
 
+	/**
+	 * Edit entry by given id
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
+	public function edit($id)
+	{
+		// TODO: Implement edit() method.
+	}
+
+	/**
+	 * Update entry by given id
+	 *
+	 * @param $data
+	 * @param $id
+	 * @return mixed
+	 * @internal param $request
+	 */
+	public function update($id, $data)
+	{
+		// TODO: Implement update() method.
+	}
+
+	/**
+	 * Deletes the Entry
+	 * Set the delete_at field
+	 *
+	 * @param $id
+	 * @return mixed
+	 */
+	public function destroy($id)
+	{
+		// TODO: Implement destroy() method.
+	}
 }

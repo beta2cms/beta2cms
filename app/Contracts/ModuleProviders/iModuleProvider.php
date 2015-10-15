@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Contracts\ModuleProviders;
 
 interface iModuleProvider
 {
@@ -20,14 +21,14 @@ interface iModuleProvider
      * @return mixed
      * @internal param $id
      */
-    public function preview($module_id, $sp_id);
+    public function preview($id);
 
     /**
      * Create new Module entry, Display form
      *
      * @return mixed
      */
-    public function create($module_id);
+    public function create();
 
     /**
      * Store new Entry
@@ -37,7 +38,7 @@ interface iModuleProvider
      * @return mixed
      * @internal param $request
      */
-    public function store($data, $node_id);
+    public function store($data);
 
     /**
      * Edit entry by given id
@@ -55,7 +56,7 @@ interface iModuleProvider
      * @return mixed
      * @internal param $request
      */
-    public function update($data, $id);
+    public function update($id, $data);
 
     /**
      * Deletes the Entry
@@ -72,6 +73,6 @@ interface iModuleProvider
      *
      * @return mixed
      */
-    public function rules($module_id);
+    public function rules();
 
 }
