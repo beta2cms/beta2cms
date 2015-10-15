@@ -43,7 +43,7 @@
                 <th></th>
                 <td colspan="3">
                     @if($item->element->module->active)
-                        {!!  $render->preview($item->element->module_id, $item->element->row)  !!}
+                        {!!  $provider->preview($item->element->module_id, $item->element->row)  !!}
                     @else
                         <b>No preview Specified.</b>
                     @endif

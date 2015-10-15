@@ -69,17 +69,17 @@ Route::group(['prefix' => 'admin'], function() {
          */
         Route::get('/element/{id}',[
             'as' => 'admin.element.index',
-            'uses'  => 'Backend\ElementController@index'
+            'uses'  => 'Backend\ContentController@index'
         ]);
 
         Route::get('/element/{id}/create',[
             'as' => 'admin.element.create',
-            'uses'  => 'Backend\ElementController@create'
+            'uses'  => 'Backend\ContentController@create'
         ]);
 
         Route::post('/element/{id}/store',[
             'as' => 'admin.element.store',
-            'uses'  => 'Backend\ElementController@store'
+            'uses'  => 'Backend\ContentController@store'
         ]);
 
 

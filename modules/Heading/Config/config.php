@@ -1,5 +1,6 @@
 <?php
 
 return [
-	'name' => 'Heading'
+	'name' => 'Heading',
+	'test' => 'WASD',
 ];

@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 use Modules\Heading\Entities\Heading;
 use Modules\Heading\Http\Requests\HeadingRequest;
+use Pingpong\Modules\Facades\Module;
 
-class HeadingServiceProvider extends ServiceProvider {
+class HeadingServiceProvider extends ServiceProvider  {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -33,7 +34,7 @@ class HeadingServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->bind('module:heading', function($app) {
+		$this->app->singleton('module:heading', function($app) {
 			return $this;
 		});
 	}
@@ -134,7 +135,7 @@ class HeadingServiceProvider extends ServiceProvider {
 	}
 
 
-	public function store(HeadingRequest $request)
+	public function store(Request $request)
 	{
 		return Heading::create($request)->save();
 	}
@@ -146,10 +147,9 @@ class HeadingServiceProvider extends ServiceProvider {
 	 */
 	public function rules()
 	{
-		return [
-			'tag' => 'required',
-			'title' => 'required|min:3'
-		];
+		$request = new HeadingRequest();
+		return $request->rules();
+
 	}
 
 }

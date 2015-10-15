@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 
-class ModuleServiceProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider implements \iModuleProvider
 {
 
 
@@ -18,7 +18,12 @@ class ModuleServiceProvider extends ServiceProvider
      */
     private $module = null;
 
-    private $element  = null;
+    /**
+     * The Service Provider of the current Module
+     *
+     * @var null
+     */
+    private $moduleServiceProvider  = null;
 
     /**
      * Bootstrap the application services.
@@ -37,7 +42,7 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('module:render', function($app) {
+        $this->app->singleton('module:provider', function($app) {
             return $this;
         });
     }
@@ -46,14 +51,14 @@ class ModuleServiceProvider extends ServiceProvider
      * Render preview Model content
      *
      * @param $module_id
-     * @param $element_id
+     * @param $moduleServiceProvider_id
      * @return mixed
      */
-    public function preview($module_id, $element_id)
+    public function preview($module_id, $moduleServiceProvider_id)
     {
         $this->isModule($module_id);
 
-        return App::make('module:' . strtolower($this->module->name))->preview($element_id);
+        return $this->moduleServiceProvider->preview($moduleServiceProvider_id);
     }
 
 
@@ -61,18 +66,16 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->isModule($module_id);
 
-        return App::make('module:' . strtolower($this->module->name))->create();
+        return $this->moduleServiceProvider->create();
     }
 
-    public function store($request, $node_id)
+    public function store($data, $node_id)
     {
-        $data = $request->all();
-
         $this->isModule($data['module']);
 
-//        $elem = \App\Element::
+//        $elem = \App\moduleServiceProvider::
 //        dd($data, $node_id);
-        $store =  $this->element->create($request->all());
+        $store =  $this->moduleServiceProvider->create($data);
         return redirect()->back();
 
     }
@@ -82,10 +85,6 @@ class ModuleServiceProvider extends ServiceProvider
 
     }
 
-    public function update($module_id, Request $request)
-    {
-
-    }
 
     public function destroy($module_id)
     {
@@ -97,7 +96,7 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->isModule($module_id);
 
-        return $this->element->rules();
+        return $this->moduleServiceProvider->rules();
     }
 
     /**
@@ -110,7 +109,32 @@ class ModuleServiceProvider extends ServiceProvider
         if(!isset($this->module) || $this->module->id !== $module_id)
         {
             $this->module = Module::findOrFail($module_id);
-            $this->element = App::make('module:' . strtolower($this->module->name));
+
+            $this->moduleServiceProvider = App::make('module:' . strtolower($this->module->name));
         }
+    }
+
+    /**
+     * Render the Module Partial
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function render($id)
+    {
+        // TODO: Implement render() method.
+    }
+
+    /**
+     * Update entry by given id
+     *
+     * @param $data
+     * @param $id
+     * @return mixed
+     * @internal param $request
+     */
+    public function update($data, $id)
+    {
+        // TODO: Implement update() method.
     }
 }

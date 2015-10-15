@@ -8,10 +8,22 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class ElementController extends Controller
+class ContentController extends Controller
 {
 
     use SelectboxHelper;
+
+    /**
+     * The Module Service Provider
+     * @var null
+     */
+    protected $provider = null;
+
+
+    function __construct() {
+        $this->provider = \App::make('module:provider');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +33,10 @@ class ElementController extends Controller
     {
         $node = \App\Node::findOrFail($id);
 
-        $render = \App::make('module:render');
-        return view('admin.element.index',compact('render','node'));
+        return view('admin.element.index', array(
+            'provider' => $this->provider,
+            'node' => $node
+        ));
     }
 
     /**
@@ -34,8 +48,12 @@ class ElementController extends Controller
     {
         $items = \App\Module::active()->get();
         $modules = SelectboxHelper::itemsToSelect($items);
-        $render = \App::make('module:render');
-        return view('admin.element.create', compact('render', 'modules', 'id'));
+
+        return view('admin.element.create', array(
+            'provider' => $this->provider,
+            'modules' => $modules,
+            'id' => $id
+        ));
     }
 
 
@@ -48,13 +66,11 @@ class ElementController extends Controller
      */
     public function store(Request $request, $node_id)
     {
-        $render = \App::make('module:render');
         $data = $request->all();
-        $rules = $render->rules($data['module']);
 
+        $rules = $this->provider->rules($data['module']);
 
         $validator = Validator::make($data, $rules);
-
 
         if ($validator->fails()) {
             return redirect()
@@ -63,7 +79,7 @@ class ElementController extends Controller
                 ->withInput();
         }
 
-        $store = $render->store($request, $node_id);
+        $store = $this->provider->store($data, $node_id);
         dd($store);
     }
 
