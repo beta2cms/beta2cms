@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'], function() {
          */
         Route::get('/', [
             'as' => 'admin.index',
-            'uses' => 'Backend\AdminController@index'
+            'uses' => 'Backend\DashboardController@index'
         ]);
 
         /*
