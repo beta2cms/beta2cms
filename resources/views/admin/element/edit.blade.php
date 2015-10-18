@@ -23,6 +23,7 @@
     </div>
 
     <div class="col-lg-12">
+
         @include('admin.element.partials.form', [
             'route' => 'admin.element.update',
             'items' => $modules,

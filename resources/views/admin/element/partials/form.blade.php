@@ -28,11 +28,10 @@
 </div>
 <hr>
 
-
 @include('partials.form.checkbox', [
     'label' => 'Active',
     'name' => 'active',
-    'select' =>  false
+    'select' =>  isset($model->active) ? $model->active : null
 ])
 
 @include('partials.form.submit', [

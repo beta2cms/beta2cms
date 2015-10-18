@@ -132,6 +132,8 @@ class ContentController extends Controller
         $partial = $this->provider->edit($module,$row);
         $item = \App\Module::findOrFail($module);
         $model = \App\Content::find($id);
+
+        $model->active = $model->active == "1";
         //dd($model);
 //        dd($item);
         return view('admin.element.edit', array(
