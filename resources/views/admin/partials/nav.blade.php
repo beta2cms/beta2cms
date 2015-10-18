@@ -63,7 +63,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{auth()->user()->name}} <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{auth()->user()->fullname()}} <b class="caret"></b></a>
                 <ul class="dropdown-menu animated fadeInRight">
 
                     @include('admin.partials.side-item' ,  [

@@ -28,12 +28,36 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'first_name',
+        'last_name',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
+
+    public function fullname()
+    {
+        if(isset($this->first_name) && isset($this->last_name))
+            return $this->first_name . ' ' . $this->last_name;
+
+        if(isset($this->first_name))
+            return $this->first_name;
+
+        if(isset($this->last_name))
+            return $this->last_name;
+
+        return $this->name;
+    }
+
 }

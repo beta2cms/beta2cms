@@ -34,7 +34,7 @@
             <div class="col-md-6">
             @include('partials.form.text', [
                'label' => 'First Name: ',
-               'name' => 'first-name',
+               'name' => 'first_name',
                'params' => [
                    'class' => 'form-control'
                ]
@@ -43,7 +43,7 @@
             <div class="col-md-6">
                 @include('partials.form.text', [
                    'label' => 'Last Name: ',
-                   'name' => 'last-name',
+                   'name' => 'last_name',
                    'params' => [
                        'class' => 'form-control'
                    ]
@@ -55,7 +55,7 @@
             <div class="col-lg-12">
                 @include('partials.form.password', [
                    'label' => 'Password: ',
-                   'name' => 'passowrd',
+                   'name' => 'confirm',
                    'params' => [
                        'class' => 'form-control',
                        'placeholder' => 'please confirm changes..'

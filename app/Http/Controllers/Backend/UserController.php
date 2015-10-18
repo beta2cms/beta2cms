@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Helpers\Data;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -36,17 +38,29 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UserRequest|Request $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $data = $request->all();
 
+        Data::checkIsSet($data, 'confirm');
 
-        dd(Hash::check($data['password'], auth()->user()->getAuthPassword()));
+        if(Hash::check($data['confirm'], auth()->user()->getAuthPassword()))
+        {
+            // todo: flash success
+            $user = \App\User::find($id);
+            $user->update($data);
 
-      // todo confirm width password
+            return redirect()->route('admin.user.index');
+
+        }
+        dd(auth()->user()->getAuthPassword());
+        // todo: flash wrong password
+
+        return redirect()->route('admin.user.edit')->withInput($data);
     }
 
 }
