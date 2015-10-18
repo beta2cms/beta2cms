@@ -1,4 +1,3 @@
-
 @include('partials.form.open', [
     'route' => $route,
     'model' => $model
@@ -9,9 +8,10 @@
     'name' => 'module',
     'items' => $items,
     'params' => [
-        'placeholder' => 'Choose a Module..',
-        'class' => 'form-control'
-    ]
+        //'placeholder' => 'Choose a Module..',
+        'class' => 'form-control',
+        isset($select_disabled) ? 'disabled' : ''
+    ],
 ])
 
 
@@ -21,14 +21,17 @@
 {{--])--}}
 
 <hr>
-<div id="partial"></div>
+<div id="partial">
+    @if(isset($partial))
+        {!! $partial !!}
+    @endif
+</div>
 <hr>
-
 
 @include('partials.form.checkbox', [
     'label' => 'Active',
     'name' => 'active',
-    'select' =>  false
+    'select' =>  isset($model->active) ? $model->active : null
 ])
 
 @include('partials.form.submit', [

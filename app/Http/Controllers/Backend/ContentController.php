@@ -51,6 +51,7 @@ class ContentController extends Controller
         $items = \App\Module::active()->get();
         $modules = SelectboxHelper::itemsToSelect($items);
 
+
         return view('admin.element.create', array(
             'provider' => $this->provider,
             'modules' => $modules,
@@ -91,12 +92,13 @@ class ContentController extends Controller
         $data = Data::addField($data, 'row', $module['id']);
 
         //Create Element
-        $elem_status = \App\Element::create($data)->save();
+        $element = \App\Element::create($data);
+        $element->save();
 
-        $element_id = \App\Element::all()->last()->id;
+
 
         $data = Data::addField($data, 'node_id', $node_id);
-        $data = Data::addField($data, 'element_id', $element_id);
+        $data = Data::addField($data, 'element_id', $element->id);
 
         $content = \App\Content::create($data)->save();
 
@@ -118,12 +120,29 @@ class ContentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+
+        $module = $request->get('module');
+        $row = $request->get('data');
+        $partial = $this->provider->edit($module,$row);
+        $item = \App\Module::findOrFail($module);
+        $model = \App\Content::find($id);
+
+        $model->active = $model->active == "1";
+        //dd($model);
+//        dd($item);
+        return view('admin.element.edit', array(
+            'provider' => $this->provider,
+            'modules' => SelectboxHelper::singleItemToSelect($item),
+            'id' => $id,
+            'partial' => $partial,
+            'model' => $model
+        ));
     }
 
     /**

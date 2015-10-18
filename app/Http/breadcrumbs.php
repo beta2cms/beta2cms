@@ -40,5 +40,12 @@ Breadcrumbs::register('element-create', function($breadcrumbs)
 });
 
 
+// Dashboard > Element > Edit
+Breadcrumbs::register('element-edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('element');
+    $breadcrumbs->push('Edit Element', route('admin.element.edit'), ['icon' => 'edit']);
+});
+
 
 

@@ -82,6 +82,17 @@ Route::group(['prefix' => 'admin'], function() {
             'uses'  => 'Backend\ContentController@store'
         ]);
 
+<<<<<<< HEAD
+        Route::get('/element/{id}/edit',[
+            'as' => 'admin.element.edit',
+            'uses' => 'Backend\ContentController@edit'
+        ]);
+
+        Route::post('/element/{id}/update',[
+            'as' => 'admin.element.update',
+            'uses' => 'Backend\ContentController@update'
+        ]);
+=======
         /* User Routes */
 
         Route::get('/user',[
@@ -100,6 +111,7 @@ Route::group(['prefix' => 'admin'], function() {
         ]);
 //        Route::resource('user', 'Backend\UserController', ['only' => 'index', 'edit', 'update']);
 
+>>>>>>> User-profile
 
 
     });

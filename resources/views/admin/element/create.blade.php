@@ -38,19 +38,20 @@
     <script>
         $(function() {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-Token' : '{{ csrf_token() }}'
-                }
-            });
+            loadModule();
 
             @if($errors->any())
-            loadModule();
-            displayErrors( {!!   $errors->toJSON() !!} );
+                displayErrors( {!!   $errors->toJSON() !!} );
             @endif
 
             $("#module").on('change', function() {
                 loadModule();
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token' : '{{ csrf_token() }}'
+                }
             });
 
             function loadModule()
