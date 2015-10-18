@@ -15,6 +15,25 @@ trait Data {
     public static function checkActive($data)
     {
         $data['active'] = isset($data['active']);
+
+        return $data;
+    }
+
+    /**
+     * Check if a key isset in an array.
+     * When not , set a default value
+     *
+     * @param $data
+     * @param $key
+     * @param string $value
+     * @return mixed
+     */
+    public static function checkIsSet($data, $key, $value = '')
+    {
+        if(!isset($data[$key]))
+        {
+            $data[$key] = $value;
+        }
         return $data;
     }
 
