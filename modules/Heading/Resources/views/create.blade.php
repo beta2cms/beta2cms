@@ -1,3 +1,4 @@
+<div class="div  animated fadeInRight">
 <div class="row">
     <div class="col-md-2">
         @include('assets::partials.form.select', [
@@ -31,5 +32,7 @@
 </div>
 
 @include('assets::partials.layouts.classid')
+
+</div>
 
 
