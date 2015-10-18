@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'], function() {
          */
         Route::get('/', [
             'as' => 'admin.index',
-            'uses' => 'Backend\AdminController@index'
+            'uses' => 'Backend\DashboardController@index'
         ]);
 
         /*
@@ -80,6 +80,16 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/element/{id}/store',[
             'as' => 'admin.element.store',
             'uses'  => 'Backend\ContentController@store'
+        ]);
+
+        Route::get('/element/{id}/edit',[
+            'as' => 'admin.element.edit',
+            'uses' => 'Backend\ContentController@edit'
+        ]);
+
+        Route::post('/element/{id}/update',[
+            'as' => 'admin.element.update',
+            'uses' => 'Backend\ContentController@update'
         ]);
 
 

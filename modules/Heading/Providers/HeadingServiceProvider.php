@@ -172,7 +172,9 @@ class HeadingServiceProvider extends ServiceProvider implements iModuleProvider 
 	 */
 	public function edit($id)
 	{
-		// TODO: Implement edit() method.
+		return view()->make('heading::edit', [
+			'item' => Heading::findOrFail($id)
+		])->render();
 	}
 
 	/**

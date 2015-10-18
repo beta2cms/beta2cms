@@ -90,6 +90,13 @@ class ModuleServiceProvider extends ServiceProvider
 
     }
 
+    public function edit($module_id,$row)
+    {
+        $this->isModule($module_id);
+
+        return $this->moduleServiceProvider->edit($row);
+    }
+
 
     /**
      * Validation Rules

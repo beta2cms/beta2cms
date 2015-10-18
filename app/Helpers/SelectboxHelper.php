@@ -13,4 +13,11 @@ trait SelectboxHelper {
         }
         return $elements;
     }
+
+    public static function singleItemToSelect($item)
+    {
+        return [
+            $item->id => $item->name
+        ];
+    }
 }
