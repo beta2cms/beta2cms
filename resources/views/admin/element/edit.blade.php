@@ -24,7 +24,7 @@
 
     <div class="col-lg-12">
         @include('admin.element.partials.form', [
-            'route' => array('admin.element.update', $id),
+            'route' => 'admin.element.update',
             'items' => $modules,
             'btn' => 'Update Item',
             'model' => $model,

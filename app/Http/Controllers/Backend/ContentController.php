@@ -133,7 +133,7 @@ class ContentController extends Controller
         $item = \App\Module::findOrFail($module);
         $model = \App\Content::find($id);
         //dd($model);
-        //dd($items);
+//        dd($item);
         return view('admin.element.edit', array(
             'provider' => $this->provider,
             'modules' => SelectboxHelper::singleItemToSelect($item),

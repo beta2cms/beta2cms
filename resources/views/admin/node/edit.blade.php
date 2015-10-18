@@ -2,14 +2,14 @@
 
 
 @section('title', 'Site Structure')
-@section('subtitle', 'Create')
+@section('subtitle', 'Edit')
 
 
 @section('content')
 
     <div class="col-lg-12">
         @include('admin.node.partials.form', [
-            'route' => 'admin.node.update',
+            'route' => 'admin.element.update',
             'model' => $node,
             'parent' => null,
             'btn' => 'Update Node'
