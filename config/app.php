@@ -145,7 +145,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
-        App\Providers\ErrorServiceProvider::class,
 
         /*
          * Extension Service Providers...
