@@ -15,6 +15,7 @@
     <link href="{{URL::asset('vendor/bootstrap-3.3.5/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('vendor/bootstrap-3.3.5/css/bootstrap-theme.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('vendor/font-awesome-4.4.0/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('vendor/animate/animate.css')}}" rel="stylesheet">
 
     <link href="{{URL::asset('css/sb-admin.css')}}" rel="stylesheet">
 
@@ -29,7 +30,7 @@
 
 <body>
 
-<div id="wrapper" class="{{isset($wrapper) ? $wrapper : ''}}">
+<div id="wrapper" class="{{isset($wrapper) ? $wrapper .' animated fadeInLeft': ''}}">
 
     <div id="page-wrapper">
         <div class="container-fluid">
