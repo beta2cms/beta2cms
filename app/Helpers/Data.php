@@ -32,7 +32,7 @@ trait Data {
     {
         if(!isset($data[$key]))
         {
-            $data[$key] = $value;
+            array_add($data, $key, $value);
         }
         return $data;
     }
