@@ -14,7 +14,7 @@
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                <ul class="dropdown-menu message-dropdown">
+                <ul class="dropdown-menu message-dropdown animated fadeInRight">
                     @include('admin.partials.massage', [
                         'route' => null,
                         'image' => 'http://placehold.it/50x50',
@@ -30,7 +30,7 @@
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                <ul class="dropdown-menu alert-dropdown">
+                <ul class="dropdown-menu alert-dropdown animated fadeInRight">
 
                     {{--@include('admin.partials.alert' ,  [--}}
                     {{--'route' => null,--}}
@@ -64,10 +64,10 @@
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{auth()->user()->name}} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu animated fadeInRight">
 
                     @include('admin.partials.side-item' ,  [
-                        'route' => '#',
+                        'route' => route('admin.user.index'),
                         'icon' => 'user',
                         'name' => 'Profile',
                     ])
