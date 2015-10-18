@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row">
     <div class="col-md-2">
 @include('assets::partials.form.select', [
@@ -37,3 +38,12 @@
      ])
 
 
+=======
+<?php
+/**
+ * Created by IntelliJ IDEA.
+ * User: simongyimah
+ * Date: 16/10/15
+ * Time: 00:33
+ */
+>>>>>>> User-profile
