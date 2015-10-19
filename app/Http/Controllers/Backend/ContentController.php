@@ -60,7 +60,6 @@ class ContentController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -94,8 +93,6 @@ class ContentController extends Controller
         //Create Element
         $element = \App\Element::create($data);
         $element->save();
-
-
 
         $data = Data::addField($data, 'node_id', $node_id);
         $data = Data::addField($data, 'element_id', $element->id);
@@ -167,8 +164,4 @@ class ContentController extends Controller
     {
         //
     }
-
-
-
-
 }

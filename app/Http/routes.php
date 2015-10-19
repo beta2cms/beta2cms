@@ -88,7 +88,7 @@ Route::group(['prefix' => 'admin'], function() {
             'uses' => 'Backend\ContentController@edit'
         ]);
 
-        Route::post('/element/{id}/update',[
+        Route::put('/element/{id}/update',[
             'as' => 'admin.element.update',
             'uses' => 'Backend\ContentController@update'
         ]);
@@ -110,8 +110,7 @@ Route::group(['prefix' => 'admin'], function() {
             'uses'  => 'Backend\UserController@update'
         ]);
 //        Route::resource('user', 'Backend\UserController', ['only' => 'index', 'edit', 'update']);
-
-
+        
     });
 
     Route::group(['middleware' => 'guest'], function() {
