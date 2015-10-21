@@ -1,6 +1,11 @@
 # beta2cms
 
-Content Management System based on Laravel 5.1 Framework
+Content Management System based on Laravel 5.1 Framework.
+
+## Description
+
+The CMS is build on the Pingpong-Modules. ...
+
 
 ### License
 
